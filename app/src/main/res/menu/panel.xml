@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/pmSearch"
+        android:icon="@drawable/search_1"
+        android:title="@string/pmSearch"
+        app:actionViewClass="org.ifaco.migratio.more.MigratioSearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/pmRefresh"
+        android:icon="@drawable/refresh_1"
+        android:title="@string/pmRefresh"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/pmShareResults"
+        android:title="@string/pmShareResults" />
+    <item
+        android:id="@+id/pmHelp"
+        android:title="@string/pmHelp" />
+    <item
+        android:id="@+id/pmAbout"
+        android:title="@string/pmAbout" />
+</menu>

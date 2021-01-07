@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="CP">#00AEEF</color>
+    <color name="CPD">@color/CP</color><!--#0094CC-->
+    <color name="CA">#FFFFFF</color>
+    <color name="CPBG">#FFFFFF</color>
+    <color name="CAFG">@color/CP</color>
+    <color name="TPBG">@color/TP</color>
+    <color name="CABG">@color/CA</color>
+    <color name="CP_WEAK_1">#1600AEEF</color>
+    <color name="CA_WEAK_1">#48FFFFFF</color>
+
+    <!-- GLOBAL -->
+    <color name="TP">#00000000</color>
+    <color name="shadow_1">#55000000</color>
+    <color name="seekBar1">@color/CP</color>
+    <color name="seekBar1BG">@color/CP</color>
+    <color name="migratioSearchView1">@color/CA</color>
+
+    <!-- Panel -->
+    <color name="load">@color/CP</color>
+    <color name="logo">@color/CA</color>
+    <color name="logoText">@color/logo</color>
+    <color name="tvRVMCE">#9B000000</color>
+    <color name="myConPressed">#F3F3F3</color>
+
+    <!-- Select -->
+    <color name="criCloserTo">@color/CP</color>
+
+    <!-- #DirectoryChooser -->
+    <color name="bright_blue">#33B5E5</color>
+    <color name="selection_background_color">@color/CP</color>
+</resources>

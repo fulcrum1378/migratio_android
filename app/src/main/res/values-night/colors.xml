@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="CP">#333333</color>
+    <color name="CPD">#000000</color>
+    <color name="CA">#FFFFFF</color>
+    <color name="CPBG">@color/CPD</color>
+    <color name="CAFG">@color/CA</color>
+    <color name="TPBG">#222222</color>
+    <color name="CABG">@color/CP</color>
+    <color name="CP_WEAK_1">#333333</color>
+    <color name="CA_WEAK_1">#444444</color>
+
+    <!-- Panel -->
+    <color name="tvRVMCE">#9BFFFFFF</color>
+    <color name="myConPressed">#666</color>
+</resources>

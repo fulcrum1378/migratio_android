@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/body"
+    tools:context=".Panel"
+    tools:ignore="MissingConstraints,UnknownId">
+
+    <androidx.appcompat.widget.Toolbar style="@style/toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/main">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMyCon"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingTop="18dp"
+            android:paddingBottom="87dp"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rvMyConEmpty"
+            style="@style/parentConstraint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.65">
+
+            <TextView
+                android:id="@+id/tvRVMCE"
+                style="@style/parentConstraint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="15sp"
+                android:text="@string/tvRVMCE"
+                android:textAlignment="center"
+                android:textColor="@color/tvRVMCE"
+                android:textSize="@dimen/tvRVMCE" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/pMyCriteria"
+            style="@style/parentConstraint"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/CP"
+            android:visibility="gone"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintVertical_bias="1">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.blure.complexview.ComplexView
+            android:id="@+id/fabGTS"
+            style="@style/fab1">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/goToSelect"
+                style="@style/fab1CL">
+
+                <ImageView
+                    style="@style/fab1IV"
+                    android:src="@drawable/selection_list_1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.blure.complexview.ComplexView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View style="@style/tbShadow" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/load"
+        style="@style/matchParent"
+        android:background="@color/load">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/logo"
+            style="@style/parentConstraint"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/logo"
+            app:layout_constraintVertical_bias="0.48"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/logo_1" />
+
+        <TextView
+            android:id="@+id/logoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pLogoText"
+            android:textColor="@color/logoText"
+            android:textSize="@dimen/logoText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <ImageView
+            android:id="@+id/logoReload"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/reload_1"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/logoText"
+            app:layout_constraintStart_toStartOf="@id/logoText"
+            app:layout_constraintTop_toBottomOf="@id/logoText" />
+
+        <ImageView
+            android:id="@+id/loading"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/loading_1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/logoReload"
+            app:layout_constraintEnd_toEndOf="@id/logoReload"
+            app:layout_constraintStart_toStartOf="@id/logoReload"
+            app:layout_constraintTop_toTopOf="@id/logoReload" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

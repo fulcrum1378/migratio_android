@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">میغراتیو</string>
+
+    <!-- GLOBAL -->
+    <string name="tapToExit">نريد المغادرة مرة أخرى&#8230;</string>
+    <string name="africa">أفريقيا</string>
+    <string name="asia">آسيا</string>
+    <string name="europe">أوروبا</string>
+    <string name="oceania">أوقيانوسيا</string>
+    <string name="america">أمريكا</string>
+    <string name="ok">حسنا</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="copied">Copied!</string>
+
+    <!-- FONTS -->
+    <string name="fnLogo">w_sari.ttf</string>
+    <string name="fnTitle">w_sari.ttf</string>
+    <string name="fnText">w_aban.ttf</string>
+
+
+    <!-- Panel -->
+    <string name="pLogoText">@string/app_name</string>
+    <string name="noInternet">يرجى التحقق من حالة الإنترنت الخاصة بك!</string>
+    <string name="tvRVMCE">يجب عليك أولاً تحديد دولة واحدة على الأقل ومعيار واحد ؛\nللقيام بذلك ، اضغط على الزر لأسفل&#8230;</string>
+    <string name="pmRefresh">تحديث المعلومات</string>
+    <string name="pmHelp">يرشد</string>
+    <string name="pmAbout">معلومات عنا</string>
+    <string name="pmSearch">بحث</string>
+    <string name="pmShareResults">شارك النتائج</string>
+    <string name="pHelp">تم تصميم هذه الأداة لأولئك الذين يرغبون في الهجرة إلى بلد أجنبي ويريدون معرفة أي بلد هو الخيار الأفضل لهم.\n\nيجب عليك أولاً تحديد معاييرك لبلد مثالي ، ومن ثم تستخدم هذه الأداة تصنيفات الدول وإحصائياتها وتحدد الدرجات النسبية للبلدان المرشحة وفقًا لمعاييرك. في قائمة النتائج ، يوجد دائمًا بلد بنتيجة 100٪ وهو الخيار الأفضل في تلك القائمة ، كما يوجد دائمًا بلد بنتيجة 0٪ في القائمة وهو أسوأ بلد في القائمة ، وبقية البلدان ذات الدرجات النسبية بينهما تم ترتيب البلدين.\n\nتُظهر لك هذه الأداة فقط البلد الأفضل من البلدان الأخرى المدرجة في القائمة ، حتى إذا كانت تلك الدولة نفسها لديها ظروف رهيبة! لذلك كل شيء هنا نسبي.</string>
+    <string name="about">مهدی پرستش\nالبريد الإلكتروني: fulcrum1378@gmail.com\nانستغرام: @fulcrum1378</string>
+    <string name="shareResSubject">نتائج المیغراتیو</string>
+    <string name="shareResChooser">اختر كيفية مشاركة النتائج&#8230;</string>
+
+    <!-- Select -->
+    <string name="countries">البلدان</string>
+    <string name="criteria">المعايير</string>
+    <string name="criOption1">الأكثر الأفضل</string>
+    <string name="criOption2">من الأفضل أن تكون أقرب إلى&#8230;</string>
+    <string name="criOption3">الأقل الأفضل</string>
+    <string name="criImportance">أهمية:</string>
+    <string name="smSelectAll">اختر الكل</string>
+    <string name="smResetAll">Reset Criteria</string>
+    <string name="smDeselectAll">إلغاء تحديد الجميع</string>
+    <string name="smHelp">@string/pmHelp</string>
+    <string name="smExport">تصدير الإعدادات</string>
+    <string name="smImport">استيراد الإعدادات</string>
+    <string name="sureResetAll">هل أنت متأكد من أنك تريد إعادة تعيين جميع التغييرات التي أجريتها في قسم المعايير؟</string>
+    <string name="clcSource">المصدر</string>
+    <string name="dirChosNew">Migratio</string><!--DO NOT TRANSLATE!-->
+    <string name="exportDone">اكتمل التصدير!</string>
+    <string name="exportUndone">فشل التصدير!</string>
+    <string name="importOpenError">للأسف حدث خطأ أثناء فتح الملف!</string>
+    <string name="importReadError">للأسف حدث خطأ أثناء قراءة الملف!</string>
+
+    <!-- #DirectoryChooser -->
+    <string name="cancel_label">إلغاء</string>
+    <string name="confirm_label">تصدير</string>
+    <string name="selected_folder_label">المجلد المحدد:</string>
+    <string name="create_folder_label">إنشاء مجلد</string>
+    <string name="create_folder_msg">إنشاء مجلد جديد بالاسم "%1$s"؟</string>
+    <string name="create_folder_success">إنشاء مجلد جديد</string>
+    <string name="create_folder_error_no_write_access">لا يمكن الكتابة إلى هذا المجلد</string>
+    <string name="create_folder_error_already_exists">المجلد موجود بالفعل</string>
+    <string name="create_folder_error">تعذر إنشاء المجلد</string>
+    <string name="up_label">فوق</string>
+</resources>

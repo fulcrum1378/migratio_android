@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- GLOBAL -->
+    <dimen name="tbTitle">25sp</dimen>
+    <dimen name="alert1Title">24sp</dimen>
+    <dimen name="alert1Msg">17sp</dimen>
+    <dimen name="alert1MsgLine">90sp</dimen>
+    <dimen name="alert1Button">16sp</dimen>
+
+    <!-- Panel -->
+    <dimen name="logoText">50sp</dimen>
+    <dimen name="tvRVMCE">17sp</dimen>
+    <dimen name="myConName">20dp</dimen>
+    <dimen name="myConScor">22dp</dimen>
+
+    <!-- Select -->
+    <dimen name="sNavTV">16dp</dimen>
+    <dimen name="conName">19sp</dimen>
+    <dimen name="conCont">14sp</dimen>
+    <dimen name="criName">18dp</dimen>
+    <dimen name="criValET">16dp</dimen>
+    <dimen name="criRadioText">17dp</dimen>
+    <dimen name="criSeekInfo">15dp</dimen>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SearchViewTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:searchIcon">@drawable/search_1</item>
+    </style>
+</resources>

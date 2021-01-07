@@ -1,0 +1,170 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar"><!--AppCompat-->
+        <item name="colorPrimary">@color/CP</item>
+        <item name="colorPrimaryDark">@color/CPD</item>
+        <item name="colorAccent">@color/CA</item>
+        <item name="android:windowBackground">@color/CPBG</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/CP</item>
+        <item name="popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
+        <item name="android:contextPopupMenuStyle" tools:ignore="NewApi">
+            @style/Widget.MaterialComponents.PopupMenu.ContextMenu
+        </item>
+        <item name="actionOverflowMenuStyle">
+            @style/Widget.MaterialComponents.PopupMenu.Overflow
+        </item>
+    </style>
+
+
+    <!-- GLOBAL -->
+    <style name="parentConstraint">
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+    </style>
+
+    <style name="matchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="shadow_1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">5dp</item>
+        <item name="android:background">@drawable/shadow_1</item>
+    </style>
+
+    <style name="body" parent="matchParent">
+        <item name="android:id">@id/body</item>
+        <item name="android:layoutDirection">ltr</item>
+    </style>
+
+    <style name="toolbar">
+        <item name="android:id">@id/toolbar</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item><!--?attr/actionBarSize-->
+        <item name="android:background">@color/CP</item><!--wrap_content-->
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:theme">@style/toolbarTheme</item>
+        <item name="title">@string/app_name</item>
+        <item name="titleTextColor">@color/CA</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+    </style>
+
+    <style name="toolbarTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorControlNormal">@color/CA</item>
+        <item name="android:textColorPrimary">@color/CAFG</item>
+        <item name="android:textColorSecondary">@color/CAFG</item>
+    </style>
+
+    <style name="tbShadow" parent="shadow_1">
+        <item name="android:id">@id/tbShadow</item>
+        <item name="android:height">6dp</item>
+        <item name="android:alpha">0.7</item>
+        <item name="layout_constraintTop_toBottomOf">@id/toolbar</item>
+    </style>
+
+    <style name="main">
+        <item name="android:id">@id/main</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintTop_toBottomOf">@id/toolbar</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+    </style>
+
+    <style name="fab1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="shadow">true</item>
+        <item name="shadowSpread">2</item>
+        <item name="shadowColor">#000000</item>
+        <item name="shadowAlpha">100</item>
+        <item name="radius">40dp</item>
+    </style>
+
+    <style name="fab1CL" parent="matchParent">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:background">@drawable/fab_1</item>
+    </style>
+
+    <style name="fab1IV" parent="parentConstraint">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintWidth_percent">0.43</item>
+        <item name="layout_constraintHeight_percent">0.43</item>
+    </style>
+
+    <style name="switch1" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorControlActivated">@color/CAFG</item>
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+        <item name="android:colorForeground">#42221f1f</item>
+    </style>
+
+    <style name="alertDialogue1" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="android:textColor">@color/CAFG</item>
+    </style>
+
+    <style name="SearchViewTheme" parent="Theme.MaterialComponents.DayNight" />
+
+
+    <!-- Select -->
+    <style name="sRV" parent="matchParent">
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">25dp</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+    </style>
+
+    <style name="criOption">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:background">@drawable/hover_tpbg_to_cp_weak_1</item>
+    </style>
+
+    <style name="criRadio">
+        <item name="android:layout_width">27dp</item>
+        <item name="android:layout_height">27dp</item>
+        <item name="android:background">@drawable/checkbox_1</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+    </style>
+
+    <style name="criRadioText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/CAFG</item>
+        <item name="android:textSize">@dimen/criRadioText</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">40dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+    </style>
+
+    <style name="sNavTV" parent="parentConstraint">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/CA</item>
+        <item name="android:textSize">@dimen/sNavTV</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="dirChooserButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <!--?android:attr/buttonBarButtonStyle-->
+        <!--<item name="android:background">@color/CP</item>-->
+        <!--background: ?android:attr/selectableItemBackground-->
+    </style>
+</resources>

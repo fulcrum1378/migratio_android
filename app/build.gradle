@@ -44,7 +44,6 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.3.0'
     kapt 'androidx.room:room-compiler:2.3.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'com.github.BluRe-CN:ComplexView:v1.1'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.android.volley:volley:1.2.0'
     implementation 'com.airbnb.android:lottie:3.5.0'

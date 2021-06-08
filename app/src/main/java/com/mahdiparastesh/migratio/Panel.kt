@@ -198,7 +198,7 @@ class Panel : AppCompatActivity() {
                 }
             }.start()
         }
-        selectGuide = Fun.bolden(b.fabGTS, 1.22f)
+        selectGuide = Fun.bolden(b.goToSelect, 1.22f)
 
         // Help
         b.tvRVMCE.setOnClickListener { help() }
@@ -371,8 +371,8 @@ class Panel : AppCompatActivity() {
 
         selectGuide?.cancel()
         selectGuide = null
-        b.fabGTS.scaleX = 1f
-        b.fabGTS.scaleY = 1f
+        b.goToSelect.scaleX = 1f
+        b.goToSelect.scaleY = 1f
 
         vis(b.rvMyConEmpty, false)
         allComputations =

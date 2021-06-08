@@ -100,6 +100,10 @@ class Fun {
             v.visibility = if (b) View.VISIBLE else View.GONE
         }
 
+        fun vish(v: View, b: Boolean = true) {
+            v.visibility = if (b) View.VISIBLE else View.INVISIBLE
+        }
+
         fun switcher(
             c: Context, vs: ViewSwitcher, dirLtr: Boolean, animate: Boolean = true,
             exSwitched: String = Select.exSwitchedTo2nd

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar"><!--AppCompat-->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/CP</item>
         <item name="colorPrimaryDark">@color/CPD</item>
         <item name="colorAccent">@color/CA</item>
@@ -76,22 +76,13 @@
     </style>
 
     <style name="fab1">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">4dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="layout_constraintBottom_toBottomOf">parent</item>
-        <item name="layout_constraintEnd_toEndOf">parent</item>
-        <item name="shadow">true</item>
-        <item name="shadowSpread">2</item>
-        <item name="shadowColor">#000000</item>
-        <item name="shadowAlpha">100</item>
-        <item name="radius">40dp</item>
-    </style>
-
-    <style name="fab1CL" parent="matchParent">
         <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginEnd">12dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="android:elevation">5dp</item>
         <item name="android:background">@drawable/fab_1</item>
     </style>
 
@@ -162,11 +153,5 @@
         <item name="android:textColor">@color/CA</item>
         <item name="android:textSize">@dimen/sNavTV</item>
         <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="dirChooserButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <!--?android:attr/buttonBarButtonStyle-->
-        <!--<item name="android:background">@color/CP</item>-->
-        <!--background: ?android:attr/selectableItemBackground-->
     </style>
 </resources>

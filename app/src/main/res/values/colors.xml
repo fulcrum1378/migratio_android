@@ -22,7 +22,7 @@
     <color name="logo">@color/CA</color>
     <color name="logoText">@color/logo</color>
     <color name="tvRVMCE">#9B000000</color>
-    <color name="myConPressed">#F3F3F3</color>
+    <color name="myConSeparator">#EEE</color>
 
     <!-- Select -->
     <color name="criCloserTo">@color/CP</color>

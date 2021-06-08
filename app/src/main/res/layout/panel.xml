@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/body"
     tools:context=".Panel"
-    tools:ignore="MissingConstraints,UnknownId">
+    tools:ignore="MissingConstraints,ContentDescription,UnknownId">
 
     <androidx.appcompat.widget.Toolbar style="@style/toolbar" />
 
@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
-            android:paddingTop="18dp"
-            android:paddingBottom="87dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="77dp"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -51,19 +51,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.blure.complexview.ComplexView
-            android:id="@+id/fabGTS"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/goToSelect"
             style="@style/fab1">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/goToSelect"
-                style="@style/fab1CL">
-
-                <ImageView
-                    style="@style/fab1IV"
-                    android:src="@drawable/selection_list_1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.blure.complexview.ComplexView>
+            <ImageView
+                style="@style/fab1IV"
+                android:src="@drawable/selection_list_1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View style="@style/tbShadow" />

@@ -12,5 +12,5 @@
 
     <!-- Panel -->
     <color name="tvRVMCE">#9BFFFFFF</color>
-    <color name="myConPressed">#666</color>
+    <color name="myConSeparator">#272727</color>
 </resources>

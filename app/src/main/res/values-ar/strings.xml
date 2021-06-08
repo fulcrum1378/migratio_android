@@ -48,21 +48,8 @@
     <string name="smImport">استيراد الإعدادات</string>
     <string name="sureResetAll">هل أنت متأكد من أنك تريد إعادة تعيين جميع التغييرات التي أجريتها في قسم المعايير؟</string>
     <string name="clcSource">المصدر</string>
-    <string name="dirChosNew">Migratio</string><!--DO NOT TRANSLATE!-->
     <string name="exportDone">اكتمل التصدير!</string>
     <string name="exportUndone">فشل التصدير!</string>
     <string name="importOpenError">للأسف حدث خطأ أثناء فتح الملف!</string>
     <string name="importReadError">للأسف حدث خطأ أثناء قراءة الملف!</string>
-
-    <!-- #DirectoryChooser -->
-    <string name="cancel_label">إلغاء</string>
-    <string name="confirm_label">تصدير</string>
-    <string name="selected_folder_label">المجلد المحدد:</string>
-    <string name="create_folder_label">إنشاء مجلد</string>
-    <string name="create_folder_msg">إنشاء مجلد جديد بالاسم "%1$s"؟</string>
-    <string name="create_folder_success">إنشاء مجلد جديد</string>
-    <string name="create_folder_error_no_write_access">لا يمكن الكتابة إلى هذا المجلد</string>
-    <string name="create_folder_error_already_exists">المجلد موجود بالفعل</string>
-    <string name="create_folder_error">تعذر إنشاء المجلد</string>
-    <string name="up_label">فوق</string>
 </resources>

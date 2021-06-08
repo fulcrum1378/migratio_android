@@ -5,7 +5,7 @@
         android:id="@+id/pmSearch"
         android:icon="@drawable/search_1"
         android:title="@string/pmSearch"
-        app:actionViewClass="org.ifaco.migratio.more.MigratioSearchView"
+        app:actionViewClass="com.mahdiparastesh.migratio.more.MigratioSearchView"
         app:showAsAction="ifRoom|collapseActionView" />
     <item
         android:id="@+id/pmRefresh"

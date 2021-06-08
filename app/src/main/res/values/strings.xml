@@ -48,21 +48,8 @@
     <string name="smImport">Import Settings</string>
     <string name="sureResetAll">Are you sure you want to reset all the changes you\'ve made in the Criteria section?</string>
     <string name="clcSource">Source</string>
-    <string name="dirChosNew">Migratio</string>
     <string name="exportDone">Exporting was completed!</string>
     <string name="exportUndone">Exporting was failed!</string>
     <string name="importOpenError">Unfortunately an error occurred while opening the file!</string>
     <string name="importReadError">Unfortunately an error occurred while reading the file!</string>
-
-    <!-- #DirectoryChooser -->
-    <string name="cancel_label">Cancel</string>
-    <string name="confirm_label">Export</string>
-    <string name="selected_folder_label">Selected folder:</string>
-    <string name="create_folder_label">Create folder</string>
-    <string name="create_folder_msg">Create new folder with name "%1$s"?</string>
-    <string name="create_folder_success">Created new folder</string>
-    <string name="create_folder_error_no_write_access">Cannot write to this folder</string>
-    <string name="create_folder_error_already_exists">Folder already exists</string>
-    <string name="create_folder_error">Could not create folder</string>
-    <string name="up_label">Up</string>
 </resources>

@@ -26,8 +26,4 @@
 
     <!-- Select -->
     <color name="criCloserTo">@color/CP</color>
-
-    <!-- #DirectoryChooser -->
-    <color name="bright_blue">#33B5E5</color>
-    <color name="selection_background_color">@color/CP</color>
 </resources>

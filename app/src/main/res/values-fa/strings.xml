@@ -48,21 +48,8 @@
     <string name="smImport">وارد کردن تنظیمات</string>
     <string name="sureResetAll">آیا مطمئنید که می خواهید تمام تغییراتی که در بخش \"معیارها\" بوجود آوردید را به حالت اول بازگردانید؟</string>
     <string name="clcSource">منبع</string>
-    <string name="dirChosNew">Migratio</string><!--DO NOT TRANSLATE!-->
     <string name="exportDone">استخراج انجام شد!</string>
     <string name="exportUndone">استخراج ناتمام ماند!</string>
     <string name="importOpenError">متاسفانه در هنگام باز کردن فایل خطایی پیش آمد!</string>
     <string name="importReadError">متاسفانه در هنگام خواندن فایل خطایی پیش آمد!</string>
-
-    <!-- #DirectoryChooser -->
-    <string name="cancel_label">لغو</string>
-    <string name="confirm_label">استخراج</string>
-    <string name="selected_folder_label">فولدر انتخاب شده:</string>
-    <string name="create_folder_label">ایجاد فولدر</string>
-    <string name="create_folder_msg">ایجاد فولدر با نام "%1$s"؟</string>
-    <string name="create_folder_success">ایجاد فولدر جدید</string>
-    <string name="create_folder_error_no_write_access">استخراج در این فولدر امکان پذیر نیست</string>
-    <string name="create_folder_error_already_exists">فولدر دیگری با این نام وجود دارد</string>
-    <string name="create_folder_error">فولدر ایجاد نشد</string>
-    <string name="up_label">بالا</string>
 </resources>

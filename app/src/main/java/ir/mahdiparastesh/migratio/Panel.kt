@@ -15,13 +15,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import ir.mahdiparastesh.migratio.Fun.Companion.connected
-import ir.mahdiparastesh.migratio.Fun.Companion.now
-import ir.mahdiparastesh.migratio.Fun.Companion.vis
-import ir.mahdiparastesh.migratio.adap.MyConAdap
+import ir.mahdiparastesh.migratio.Fun.connected
+import ir.mahdiparastesh.migratio.Fun.now
+import ir.mahdiparastesh.migratio.Fun.vis
 import ir.mahdiparastesh.migratio.data.*
 import ir.mahdiparastesh.migratio.databinding.PanelBinding
-import ir.mahdiparastesh.migratio.more.BaseActivity
+import ir.mahdiparastesh.migratio.list.MyConAdap
+import ir.mahdiparastesh.migratio.misc.BaseActivity
 import java.util.*
 import kotlin.math.round
 
@@ -196,7 +196,7 @@ class Panel : BaseActivity() {
                     computations = ArrayList()
                     for (p in allComputations!!)
                         if (Fun.countryNames()[
-                                    m.gotCountries!!.find { it.id == p.id }!!.id.toInt()
+                                m.gotCountries!!.find { it.id == p.id }!!.id.toInt()
                             ].contains(newText, true)
                         ) computations!!.add(p)
                     arrange()
@@ -231,7 +231,8 @@ class Panel : BaseActivity() {
         else -> super.onOptionsItemSelected(item)
     }
 
-    @Deprecated("Deprecated in Java")
+    @Suppress("OVERRIDE_DEPRECATION")
+    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         if (!tapToExit) {
             Toast.makeText(c, R.string.tapToExit, Toast.LENGTH_LONG).show()

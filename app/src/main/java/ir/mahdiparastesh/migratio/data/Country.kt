@@ -5,7 +5,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ir.mahdiparastesh.migratio.Fun.Companion.countryNames
+import ir.mahdiparastesh.migratio.Fun.countryNames
 import java.text.Collator
 import java.util.*
 

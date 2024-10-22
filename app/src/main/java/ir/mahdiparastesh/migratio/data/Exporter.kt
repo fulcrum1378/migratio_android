@@ -7,10 +7,10 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.gson.Gson
-import ir.mahdiparastesh.migratio.Fun.Companion.z
+import ir.mahdiparastesh.migratio.Fun.z
 import ir.mahdiparastesh.migratio.R
 import ir.mahdiparastesh.migratio.Select
-import ir.mahdiparastesh.migratio.more.BaseActivity
+import ir.mahdiparastesh.migratio.misc.BaseActivity
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.util.Calendar
@@ -28,7 +28,7 @@ class Exporter(private val c: BaseActivity) {
                         fos.close()
                     }
                 }; true
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
                 false
             }
             Toast.makeText(
@@ -50,15 +50,19 @@ class Exporter(private val c: BaseActivity) {
                     data = sb.toString()
                 }
                 data!!
-            } catch (e: Exception) {
-                Toast.makeText(c, R.string.importOpenError, Toast.LENGTH_LONG).show()
+            } catch (_: Exception) {
+                Toast.makeText(
+                    c, R.string.importOpenError, Toast.LENGTH_LONG
+                ).show()
                 return@registerForActivityResult
             }
             var imported: Exported
             try {
                 imported = Gson().fromJson(data, Exported::class.java)
-            } catch (e: Exception) {
-                Toast.makeText(c, R.string.importReadError, Toast.LENGTH_LONG).show()
+            } catch (_: Exception) {
+                Toast.makeText(
+                    c, R.string.importReadError, Toast.LENGTH_LONG
+                ).show()
                 return@registerForActivityResult
             }
             c.sp.edit().apply {

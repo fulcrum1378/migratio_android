@@ -1,4 +1,4 @@
-package ir.mahdiparastesh.migratio.more
+package ir.mahdiparastesh.migratio.misc
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -29,7 +29,7 @@ import ir.mahdiparastesh.migratio.data.Works
 abstract class BaseActivity : AppCompatActivity() {
     val c: Context get() = applicationContext
     lateinit var m: Model
-    val sp: SharedPreferences by lazy { getSharedPreferences("preferences", Context.MODE_PRIVATE) }
+    val sp: SharedPreferences by lazy { getSharedPreferences("preferences", MODE_PRIVATE) }
     val logoFont: Typeface by lazy { Fun.fonts(c, Fonts.LOGO) }
     val titleFont: Typeface by lazy { Fun.fonts(c, Fonts.TITLE) }
     val textFont: Typeface by lazy { Fun.fonts(c, Fonts.TEXT) }
@@ -41,7 +41,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         m = ViewModelProvider(this, Model.Factory())["Model", Model::class.java]
 
-        Fun.cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+        Fun.cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             if (!Fun.cmCallbackSet) Fun.cm?.let {
                 it.registerDefaultNetworkCallback(Fun.cmCallback)

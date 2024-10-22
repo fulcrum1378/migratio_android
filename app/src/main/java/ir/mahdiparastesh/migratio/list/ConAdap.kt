@@ -1,4 +1,4 @@
-package ir.mahdiparastesh.migratio.adap
+package ir.mahdiparastesh.migratio.list
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
@@ -6,14 +6,14 @@ import android.graphics.drawable.TransitionDrawable
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ir.mahdiparastesh.migratio.Fun
-import ir.mahdiparastesh.migratio.Fun.Companion.td1Dur
+import ir.mahdiparastesh.migratio.Fun.td1Dur
 import ir.mahdiparastesh.migratio.Select
 import ir.mahdiparastesh.migratio.Select.Companion.conCheck
 import ir.mahdiparastesh.migratio.data.Continents
 import ir.mahdiparastesh.migratio.data.Works
 import ir.mahdiparastesh.migratio.databinding.ItemConBinding
-import ir.mahdiparastesh.migratio.more.AnyViewHolder
-import ir.mahdiparastesh.migratio.more.BaseActivity
+import ir.mahdiparastesh.migratio.misc.AnyViewHolder
+import ir.mahdiparastesh.migratio.misc.BaseActivity
 
 class ConAdap(val c: BaseActivity) : RecyclerView.Adapter<AnyViewHolder<ItemConBinding>>() {
 
@@ -30,7 +30,7 @@ class ConAdap(val c: BaseActivity) : RecyclerView.Adapter<AnyViewHolder<ItemConB
     override fun onBindViewHolder(h: AnyViewHolder<ItemConBinding>, i: Int) {
         h.b.tvName.text = "${i + 1}. ${Fun.countryNames()[c.m.gotCountries!![i].id.toInt()]}"
         h.b.tvCont.text = c.resources.getString(
-            Continents.values()[c.m.gotCountries!![i].continent].label
+            Continents.entries[c.m.gotCountries!![i].continent].label
         )
 
         (h.b.check.background as TransitionDrawable).apply {

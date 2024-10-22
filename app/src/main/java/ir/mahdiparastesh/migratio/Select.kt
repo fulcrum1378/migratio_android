@@ -15,12 +15,12 @@ import androidx.core.view.get
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import ir.mahdiparastesh.migratio.Panel.Companion.exCensor
-import ir.mahdiparastesh.migratio.adap.ConAdap
-import ir.mahdiparastesh.migratio.adap.CriAdap
 import ir.mahdiparastesh.migratio.data.*
 import ir.mahdiparastesh.migratio.databinding.ItemCriBinding
 import ir.mahdiparastesh.migratio.databinding.SelectBinding
-import ir.mahdiparastesh.migratio.more.BaseActivity
+import ir.mahdiparastesh.migratio.list.ConAdap
+import ir.mahdiparastesh.migratio.list.CriAdap
+import ir.mahdiparastesh.migratio.misc.BaseActivity
 import java.util.*
 
 @SuppressLint("NotifyDataSetChanged")
@@ -176,8 +176,7 @@ class Select : BaseActivity() {
         else -> super.onOptionsItemSelected(item)
     }
 
-    @Suppress("DeprecatedCallableAddReplaceWith")
-    @Deprecated("Deprecated in Java")
+    @Suppress("OVERRIDE_DEPRECATION")
     override fun onBackPressed() {
         @Suppress("DEPRECATION")
         if (!saveFocused() || !doSave) super.onBackPressed()
@@ -267,7 +266,7 @@ class Select : BaseActivity() {
         try {
             onBackPressed()
             finish()
-        } catch (ignored: NullPointerException) {
+        } catch (_: NullPointerException) {
         }
     }
 }

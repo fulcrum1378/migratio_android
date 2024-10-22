@@ -1,4 +1,4 @@
-package ir.mahdiparastesh.migratio.adap
+package ir.mahdiparastesh.migratio.list
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -17,8 +17,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import ir.mahdiparastesh.migratio.Fun
-import ir.mahdiparastesh.migratio.Fun.Companion.td1Dur
-import ir.mahdiparastesh.migratio.Fun.Companion.vis
+import ir.mahdiparastesh.migratio.Fun.td1Dur
+import ir.mahdiparastesh.migratio.Fun.vis
 import ir.mahdiparastesh.migratio.R
 import ir.mahdiparastesh.migratio.Select.Companion.criOFOpened
 import ir.mahdiparastesh.migratio.Select.Companion.handler
@@ -27,8 +27,8 @@ import ir.mahdiparastesh.migratio.data.Types
 import ir.mahdiparastesh.migratio.data.Work
 import ir.mahdiparastesh.migratio.data.Works
 import ir.mahdiparastesh.migratio.databinding.ItemCriBinding
-import ir.mahdiparastesh.migratio.more.AnyViewHolder
-import ir.mahdiparastesh.migratio.more.BaseActivity
+import ir.mahdiparastesh.migratio.misc.AnyViewHolder
+import ir.mahdiparastesh.migratio.misc.BaseActivity
 
 class CriAdap(val c: BaseActivity) : RecyclerView.Adapter<AnyViewHolder<ItemCriBinding>>() {
     var scrolling = false

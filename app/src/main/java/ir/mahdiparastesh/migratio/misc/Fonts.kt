@@ -1,4 +1,4 @@
-package ir.mahdiparastesh.migratio.more
+package ir.mahdiparastesh.migratio.misc
 
 import ir.mahdiparastesh.migratio.R
 

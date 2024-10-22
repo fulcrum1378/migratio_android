@@ -1,4 +1,4 @@
-package ir.mahdiparastesh.migratio.more
+package ir.mahdiparastesh.migratio.misc
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding

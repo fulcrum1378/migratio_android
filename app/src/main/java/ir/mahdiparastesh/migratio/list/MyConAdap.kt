@@ -1,4 +1,4 @@
-package ir.mahdiparastesh.migratio.adap
+package ir.mahdiparastesh.migratio.list
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ir.mahdiparastesh.migratio.Fun
-import ir.mahdiparastesh.migratio.Fun.Companion.vish
+import ir.mahdiparastesh.migratio.Fun.vish
 import ir.mahdiparastesh.migratio.Panel
 import ir.mahdiparastesh.migratio.databinding.ItemMyConBinding
-import ir.mahdiparastesh.migratio.more.AnyViewHolder
+import ir.mahdiparastesh.migratio.misc.AnyViewHolder
 import kotlin.math.round
 
 class MyConAdap(val c: Panel) : RecyclerView.Adapter<AnyViewHolder<ItemMyConBinding>>() {

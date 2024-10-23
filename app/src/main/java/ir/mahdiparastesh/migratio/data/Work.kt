@@ -3,7 +3,6 @@ package ir.mahdiparastesh.migratio.data
 import android.content.Context
 import android.os.Handler
 import androidx.room.Room
-import ir.mahdiparastesh.migratio.Fun
 import ir.mahdiparastesh.migratio.data.Works.*
 
 @Suppress("UNCHECKED_CAST")
@@ -16,13 +15,13 @@ class Work(
 ) : Thread() {
 
     override fun run() {
-        var db = Room.databaseBuilder(c, Database::class.java, Fun.defDataDB)
+        var db = Room.databaseBuilder(c, Database::class.java, "data.db")
             .fallbackToDestructiveMigration()
             .build()
         var dao = db.dao()
         when (action) {
             GET_ALL -> handler?.obtainMessage(
-                action.ordinal,
+                0/*action.ordinal*/,
                 if (!values.isNullOrEmpty()) values[0] as Int else 0,
                 if (values != null && values.size > 1) values[1] as Int else 0,
                 when (type) {

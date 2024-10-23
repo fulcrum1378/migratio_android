@@ -3,8 +3,6 @@ package ir.mahdiparastesh.migratio.misc
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Typeface
-import android.net.ConnectivityManager
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.DisplayMetrics
@@ -40,14 +38,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         m = ViewModelProvider(this, Model.Factory())["Model", Model::class.java]
-
-        Fun.cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager?
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (!Fun.cmCallbackSet) Fun.cm?.let {
-                it.registerDefaultNetworkCallback(Fun.cmCallback)
-                Fun.cmCallbackSet = true
-            }
-        } else Fun.connected = Fun.isOnlineOld()
     }
 
     override fun setContentView(root: View?) {

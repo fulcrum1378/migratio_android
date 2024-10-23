@@ -15,9 +15,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import ir.mahdiparastesh.migratio.Fun.connected
+import androidx.core.view.isVisible
 import ir.mahdiparastesh.migratio.Fun.now
-import ir.mahdiparastesh.migratio.Fun.vis
 import ir.mahdiparastesh.migratio.data.*
 import ir.mahdiparastesh.migratio.databinding.PanelBinding
 import ir.mahdiparastesh.migratio.list.MyConAdap
@@ -60,24 +59,22 @@ class Panel : BaseActivity() {
                             c, handler, Works.CLEAR_AND_INSERT_ALL, Types.CRITERION,
                             listOf(msg.obj as List<Criterion>, Types.CRITERION.ordinal)
                         ).start()
-                    }
+                    } else noInternet()
 
                     Works.GET_ALL.ordinal -> when (msg.arg1) {
                         Works.CHECK.ordinal -> when (msg.arg2) {
                             Types.COUNTRY.ordinal -> {
                                 m.gotCountries = msg.obj as List<Country>
-                                if (m.gotCountries.isNullOrEmpty() || doRefreshData()) {
-                                    if (connected) Parse(c, handler, Types.COUNTRY).start()
-                                    else noInternet()
-                                } else postLoading()
+                                if (m.gotCountries.isNullOrEmpty() || doRefreshData())
+                                    Parse(c, handler, Types.COUNTRY).start()
+                                else postLoading()
                             }
 
                             Types.CRITERION.ordinal -> {
                                 m.gotCriteria = msg.obj as List<Criterion>
-                                if (m.gotCriteria.isNullOrEmpty() || doRefreshData()) {
-                                    if (connected) Parse(c, handler, Types.CRITERION).start()
-                                    else noInternet()
-                                } else postLoading() // defaultMyCriteria() is MESSY here
+                                if (m.gotCriteria.isNullOrEmpty() || doRefreshData())
+                                    Parse(c, handler, Types.CRITERION).start()
+                                else postLoading() // defaultMyCriteria() is MESSY here
                             }
 
                             Types.MY_CRITERION.ordinal -> {
@@ -121,13 +118,9 @@ class Panel : BaseActivity() {
         b.logoText.typeface = logoFont
         b.logoReload.setOnClickListener {
             if (b.loading.visibility == View.VISIBLE) return@setOnClickListener
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
-                connected = Fun.isOnlineOld()
-            if (connected) {
-                anReload = Fun.load1(b.loading, b.logoReload)
-                Parse(c, handler, Types.COUNTRY).start()
-                Parse(c, handler, Types.CRITERION).start()
-            } else noInternet()
+            anReload = Fun.load1(b.loading, b.logoReload)
+            Parse(c, handler, Types.COUNTRY).start()
+            Parse(c, handler, Types.CRITERION).start()
         }
         if (m.loaded) b.root.removeView(b.load)
         else if (m.gotCountries == null || m.gotCriteria == null) {
@@ -251,10 +244,8 @@ class Panel : BaseActivity() {
     }
 
     fun refresh() {
-        if (connected) {
-            Parse(c, handler, Types.COUNTRY).start()
-            Parse(c, handler, Types.CRITERION).start()
-        }
+        Parse(c, handler, Types.COUNTRY).start()
+        Parse(c, handler, Types.CRITERION).start()
     }
 
     fun dataLoaded() = !m.gotCountries.isNullOrEmpty() && !m.gotCriteria.isNullOrEmpty()
@@ -278,8 +269,8 @@ class Panel : BaseActivity() {
 
     fun noInternet() {
         Toast.makeText(c, R.string.noInternet, Toast.LENGTH_SHORT).show()
-        b.logoText.vis(false)
-        b.logoReload.vis()
+        b.logoText.isVisible = false
+        b.logoReload.isVisible = true
     }
 
     fun postLoading(didUpdate: Boolean = false) {
@@ -296,7 +287,7 @@ class Panel : BaseActivity() {
             apply()
         }
         if (dataLoaded()) loaded()
-        b.loading.vis(false)
+        b.loading.isVisible = false
         if (!needsRepair(true)) compute()
     }
 
@@ -305,12 +296,26 @@ class Panel : BaseActivity() {
         var rut = sp.getBoolean(exRepair, false)
         if (rut) {
             computeSuspendedForRepair = computeAfter
-            Fun.repairMyCriteria(this, m.gotCriteria!!, m.myCriteria!!, handler)
+            val newMyCris = ArrayList<MyCriterion>()
+            for (i in m.gotCriteria!!) {
+                var findIn = m.myCriteria!!.find { it.tag == i.tag }
+                if (findIn != null) newMyCris.add(
+                    MyCriterion(0, i.tag, findIn.isOn, findIn.good, findIn.importance)
+                ) else {
+                    var good = i.good
+                    if (good == "") good = i.medi
+                    newMyCris.add(MyCriterion(0, i.tag, false, good, 100))
+                }
+            }
+            Work(
+                c, handler, Works.CLEAR_AND_INSERT_ALL, Types.MY_CRITERION,
+                listOf(newMyCris, Types.MY_CRITERION.ordinal, Works.REPAIR.ordinal)
+            ).start()
         }
         return rut
     }
 
-    fun doRefreshData() = (now() - sp.getLong(exLastUpdated, 0)) > Fun.doRefreshTime
+    fun doRefreshData() = (now() - sp.getLong(exLastUpdated, 0)) > 86400000 // A day
 
     fun compute() {
         if (m.myCountries.isNullOrEmpty() || m.gotCountries.isNullOrEmpty() ||
@@ -327,7 +332,7 @@ class Panel : BaseActivity() {
         b.goToSelect.scaleX = 1f
         b.goToSelect.scaleY = 1f
 
-        b.rvMyConEmpty.vis(false)
+        b.rvMyConEmpty.isVisible = false
         allComputations =
             Computation.compute(
                 m.gotCountries!!,
@@ -346,7 +351,7 @@ class Panel : BaseActivity() {
     }
 
     fun resetMyCon() {
-        b.rvMyConEmpty.vis()
+        b.rvMyConEmpty.isVisible = true
         b.rvMyCon.adapter = null
     }
 

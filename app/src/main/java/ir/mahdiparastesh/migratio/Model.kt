@@ -19,15 +19,14 @@ class Model : ViewModel() {
     @Suppress("UNCHECKED_CAST")
     class Factory : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(Model::class.java)) {
-                val key = "Model"
-                return if (hashMapViewModel.containsKey(key)) getViewModel(key) as T
-                else {
-                    addViewModel(key, Model())
-                    getViewModel(key) as T
-                }
+            if (!modelClass.isAssignableFrom(Model::class.java))
+                throw IllegalArgumentException("Unknown Model class")
+            val key = "Model"
+            return if (hashMapViewModel.containsKey(key)) getViewModel(key) as T
+            else {
+                addViewModel(key, Model())
+                getViewModel(key) as T
             }
-            throw IllegalArgumentException("Unknown Model class")
         }
 
         companion object {

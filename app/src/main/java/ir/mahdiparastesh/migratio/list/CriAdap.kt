@@ -15,10 +15,10 @@ import android.widget.PopupMenu
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import ir.mahdiparastesh.migratio.Fun
 import ir.mahdiparastesh.migratio.Fun.td1Dur
-import ir.mahdiparastesh.migratio.Fun.vis
 import ir.mahdiparastesh.migratio.R
 import ir.mahdiparastesh.migratio.Select.Companion.criOFOpened
 import ir.mahdiparastesh.migratio.Select.Companion.handler
@@ -69,12 +69,12 @@ class CriAdap(val c: BaseActivity) : RecyclerView.Adapter<AnyViewHolder<ItemCriB
                 h.b.ofo2ET.isEnabled = true
             }
         }
-        h.b.overflow.vis(false)
+        h.b.overflow.isVisible = false
         (h.b.overflow.layoutParams as ConstraintLayout.LayoutParams).apply {
             height = 0; h.b.overflow.layoutParams = this
         }
         if (criOFOpened != null && criOFOpened!!.size > i) if (criOFOpened!![i]) {
-            h.b.overflow.vis()
+            h.b.overflow.isVisible = true
             (h.b.overflow.layoutParams as ConstraintLayout.LayoutParams).apply {
                 height = overflowHeight; h.b.overflow.layoutParams = this
             }
@@ -110,7 +110,7 @@ class CriAdap(val c: BaseActivity) : RecyclerView.Adapter<AnyViewHolder<ItemCriB
                 }
                 addListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationStart(animation: Animator) {
-                        if (goDown) h.b.overflow.vis()
+                        if (goDown) h.b.overflow.isVisible = true
                         val maxAlpha =
                             if (findMyC(c.m.gotCriteria!![h.layoutPosition].tag).isOn) 1f else ofAlpha
                         ObjectAnimator.ofFloat(h.b.overflow, "alpha", if (goDown) maxAlpha else 0f)
@@ -119,7 +119,7 @@ class CriAdap(val c: BaseActivity) : RecyclerView.Adapter<AnyViewHolder<ItemCriB
 
                     override fun onAnimationEnd(animation: Animator) {
                         scrolling = false
-                        if (!goDown) h.b.overflow.vis(false)
+                        if (!goDown) h.b.overflow.isVisible = false
                     }
                 })
                 start()

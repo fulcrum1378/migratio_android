@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.RecyclerView
 import ir.mahdiparastesh.migratio.Fun
-import ir.mahdiparastesh.migratio.Fun.vish
 import ir.mahdiparastesh.migratio.Panel
 import ir.mahdiparastesh.migratio.databinding.ItemMyConBinding
 import ir.mahdiparastesh.migratio.misc.AnyViewHolder
@@ -36,7 +36,7 @@ class MyConAdap(val c: Panel) : RecyclerView.Adapter<AnyViewHolder<ItemMyConBind
             Toast.makeText(c, "${c.computations!![h.layoutPosition].score}%", Toast.LENGTH_SHORT)
                 .show()
         }
-        h.b.separator.vish(i != itemCount - 1)
+        h.b.separator.isInvisible = i == itemCount - 1
     }
 
     override fun getItemCount() = c.computations?.size ?: 0

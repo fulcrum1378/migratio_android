@@ -2,9 +2,12 @@ package ir.mahdiparastesh.migratio.data
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.util.JsonReader
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ir.mahdiparastesh.migratio.Fun
+import java.io.ByteArrayInputStream
+import java.io.InputStreamReader
+import java.nio.charset.Charset
 import java.text.Collator
 import java.util.*
 
@@ -44,7 +47,11 @@ data class Criterion(
     override fun describeContents() = 0
 
     fun parseName(): String {
-        var r = Fun.jsonReader(name)
+        var r = JsonReader(
+            InputStreamReader(
+                ByteArrayInputStream(name.toByteArray(Charset.forName("UTF-8"))), "UTF-8"
+            )
+        )
         var array = ArrayList<String>()
         r.beginArray()
         while (r.hasNext()) array.add(r.nextString())

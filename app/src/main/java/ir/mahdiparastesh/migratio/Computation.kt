@@ -122,7 +122,7 @@ class Computation(val id: Long, val score: Double) {
                         for (es in estimation) estimate += es
                         try {
                             estimate /= estimation.size
-                        } catch (ignored: Exception) {
+                        } catch (_: Exception) {
                         }
                     }
                     return estimate

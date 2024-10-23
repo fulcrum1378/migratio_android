@@ -1,82 +1,29 @@
 package ir.mahdiparastesh.migratio
 
-import android.Manifest
 import android.animation.*
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Typeface
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkInfo
-import android.os.Build
 import android.os.CountDownTimer
-import android.os.Handler
 import android.text.util.Linkify
-import android.util.JsonReader
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LinearInterpolator
 import android.widget.*
-import androidx.annotation.RequiresApi
-import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import ir.mahdiparastesh.migratio.data.*
 import ir.mahdiparastesh.migratio.misc.BaseActivity
 import ir.mahdiparastesh.migratio.misc.Fonts
-import java.io.ByteArrayInputStream
-import java.io.InputStreamReader
-import java.nio.charset.Charset
 import java.util.*
 
 object Fun {
-    const val defDataDB = "data.db"
     const val td1Dur = 168
-    const val doRefreshTime: Long = 86400000 // A day
-    val ssl = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) "s" else ""
-    val cloudFol = "http${ssl}://mahdiparastesh.ir/misc/migratio/"
     var censorBreak = 0
-    var cm: ConnectivityManager? = null
-    var cmCallbackSet = false
-    var connected = false
-
-    val cmCallback = @RequiresApi(Build.VERSION_CODES.M)
-    object : ConnectivityManager.NetworkCallback() {
-        private val activeNetworks: MutableList<Network> = mutableListOf()
-
-        @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
-        override fun onAvailable(network: Network) {
-            super.onAvailable(network)
-            if (activeNetworks.none { activeNetwork -> activeNetwork.networkHandle == network.networkHandle })
-                activeNetworks.add(network)
-            connected = activeNetworks.isNotEmpty()
-        }
-
-        @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
-        override fun onLost(network: Network) {
-            super.onLost(network)
-            activeNetworks.removeAll { activeNetwork -> activeNetwork.networkHandle == network.networkHandle }
-            connected = activeNetworks.isNotEmpty()
-        }
-    }
-
-
-    fun isOnlineOld(): Boolean {
-        var nwi: NetworkInfo? = null
-        if (cm != null) nwi = cm!!.activeNetworkInfo
-        return nwi != null && nwi.isConnected
-    }
-
-    fun View.vis(b: Boolean = true) {
-        visibility = if (b) View.VISIBLE else View.GONE
-    }
-
-    fun View.vish(b: Boolean = true) {
-        visibility = if (b) View.VISIBLE else View.INVISIBLE
-    }
 
     fun switcher(
         c: BaseActivity, vs: ViewSwitcher, dirLtr: Boolean, animate: Boolean = true,
@@ -104,13 +51,13 @@ object Fun {
             interpolator = LinearInterpolator()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator) {
-                    placeHolder?.vis(false)
-                    iv.vis()
+                    placeHolder?.isVisible = false
+                    iv.isVisible = true
                 }
 
                 override fun onAnimationCancel(animation: Animator) {
-                    iv.vis(false)
-                    placeHolder?.vis()
+                    iv.isVisible = false
+                    placeHolder?.isVisible = true
                 }
             })
             start()
@@ -253,7 +200,7 @@ object Fun {
         )
         tvMsg?.textSize = c.resources.getDimension(R.dimen.alert1Msg) / c.dm.density
         tvMsg?.setPadding(c.dp(28), c.dp(15), c.dp(28), c.dp(15))
-        if (tvMsg != null && linkify) Linkify.addLinks(tvMsg, Linkify.ALL)
+        if (tvMsg != null && linkify) tvMsg.autoLinkMask = Linkify.WEB_URLS // FIXME
         return tvMsg
     }
 
@@ -267,32 +214,6 @@ object Fun {
         copyText(c, tv.text.toString())
         Toast.makeText(c, R.string.copied, Toast.LENGTH_SHORT).show()
     }
-
-    fun repairMyCriteria(
-        c: BaseActivity, cris: List<Criterion>, oldMyCris: List<MyCriterion>, handler: Handler?
-    ) {
-        val newMyCris = ArrayList<MyCriterion>()
-        for (i in cris) {
-            var findIn = oldMyCris.find { it.tag == i.tag }
-            if (findIn != null) newMyCris.add(
-                MyCriterion(0, i.tag, findIn.isOn, findIn.good, findIn.importance)
-            ) else {
-                var good = i.good
-                if (good == "") good = i.medi
-                newMyCris.add(MyCriterion(0, i.tag, false, good, 100))
-            }
-        }
-        Work(
-            c, handler, Works.CLEAR_AND_INSERT_ALL, Types.MY_CRITERION,
-            listOf(newMyCris, Types.MY_CRITERION.ordinal, Works.REPAIR.ordinal)
-        ).start()
-    }
-
-    fun jsonReader(json: String): JsonReader = JsonReader(
-        InputStreamReader(
-            ByteArrayInputStream(json.toByteArray(Charset.forName("UTF-8"))), "UTF-8"
-        )
-    )
 
     fun z(n: Int): String {
         var s = n.toString()

@@ -159,7 +159,8 @@ class Select : BaseActivity() {
         R.id.smDeselectAll -> selectAll(false)
         R.id.smExport -> exporter.export()
         R.id.smImport -> exporter.import()
-        R.id.smResetAll -> Fun.alertDialogue2(this, R.string.smResetAll, R.string.sureResetAll,
+        R.id.smResetAll -> Fun.alertDialogue2(
+            this, R.string.smResetAll, R.string.sureResetAll,
             DialogInterface.OnClickListener { _, _ ->
                 if (m.gotCriteria == null) return@OnClickListener
                 defaultMyCriteria(m.gotCriteria!!, handler)

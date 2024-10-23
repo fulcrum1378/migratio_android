@@ -11,10 +11,10 @@ android {
 
     defaultConfig {
         applicationId = "ir.mahdiparastesh.migratio"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 35
         versionCode = 9
-        versionName = "4.0.0"
+        versionName = "4.0.8"
     }
 
     compileOptions {

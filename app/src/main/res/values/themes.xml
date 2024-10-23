@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="MigratioTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/CP</item>
         <item name="colorPrimaryDark">@color/CPD</item>
         <item name="colorAccent">@color/CA</item>
         <item name="android:windowBackground">@color/CPBG</item>
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/CP</item>
+        <item name="android:navigationBarColor">@color/CP</item>
         <item name="popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
-        <item name="android:contextPopupMenuStyle" tools:ignore="NewApi">
+        <item name="android:contextPopupMenuStyle">
             @style/Widget.MaterialComponents.PopupMenu.ContextMenu
         </item>
         <item name="actionOverflowMenuStyle">

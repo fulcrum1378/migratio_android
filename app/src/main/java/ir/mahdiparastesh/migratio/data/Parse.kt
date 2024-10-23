@@ -2,11 +2,9 @@ package ir.mahdiparastesh.migratio.data
 
 import android.content.Context
 import android.os.Handler
-import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import ir.mahdiparastesh.migratio.Fun
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
@@ -16,23 +14,19 @@ import java.net.URLDecoder
 import java.net.URLEncoder
 
 class Parse(val c: Context, val handler: Handler, val type: Types) : Thread() {
-    val xmlCountries = Fun.cloudFol + "countries.xml"
-    val xmlCriteria = Fun.cloudFol + "criteria.xml"
+    val cloudFol = "https://mahdiparastesh.ir/misc/migratio/"
 
     override fun run() {
         var address = ""
-        var timeout = DefaultRetryPolicy.DEFAULT_TIMEOUT_MS
         var iType: Int
         when (type) {
             Types.COUNTRY -> {
-                address = xmlCountries
-                timeout = 25000
+                address = cloudFol + "countries.xml"
                 iType = Types.COUNTRY.ordinal
             }
 
             Types.CRITERION -> {
-                address = xmlCriteria
-                timeout = 15000
+                address = cloudFol + "criteria.xml"
                 iType = Types.CRITERION.ordinal
             }
 
@@ -55,9 +49,7 @@ class Parse(val c: Context, val handler: Handler, val type: Types) : Thread() {
                 ).sendToTarget()
             }, { //if (it is TimeoutError)
                 handler.obtainMessage(Works.DOWNLOAD.ordinal, null).sendToTarget()
-            }).setTag("download$type").setRetryPolicy(
-                DefaultRetryPolicy(timeout, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-            )
+            }).setTag("download$type")
         )
     }
 
@@ -89,12 +81,12 @@ class Parse(val c: Context, val handler: Handler, val type: Types) : Thread() {
                     var cId: Long? = null
                     try {
                         cId = ir.mahdiparastesh.migratio.Countries.TAGS.indexOf(cTag).toLong()
-                    } catch (ignored: Exception) {
+                    } catch (_: Exception) {
                     }
                     var cCont: Int? = null
                     try {
                         cCont = getAttributeValue(null, tagCountryContinent).toInt()
-                    } catch (ignored: Exception) {
+                    } catch (_: Exception) {
                     }
                     var cAttrs: HashMap<String, String>? = null
                     var cExcept: HashMap<String, String>? = null
@@ -121,7 +113,7 @@ class Parse(val c: Context, val handler: Handler, val type: Types) : Thread() {
         p.require(XmlPullParser.START_TAG, null, tagCountryItem)
         var name = p.getAttributeValue(null, tagCountryItemName)
         var value = p.getAttributeValue(null, tagCountryItemValue)
-        var except = p.getAttributeValue(null, tagCountryItemException) ?: null
+        var except = p.getAttributeValue(null, tagCountryItemException)
         p.nextTag()
         p.require(XmlPullParser.END_TAG, null, tagCountryItem)
         return arrayOf(name, value, except)
@@ -153,9 +145,9 @@ class Parse(val c: Context, val handler: Handler, val type: Types) : Thread() {
                 if (name == tagCriterion) {
                     require(XmlPullParser.START_TAG, null, tagCriterion)
                     val censor = getAttributeValue(null, tagCriterionCensor)?.toInt() ?: 0
-                    criteria!!.add(
+                    criteria.add(
                         Criterion(
-                            criteria!!.size.toLong(),
+                            criteria.size.toLong(),
                             getAttributeValue(null, tagCriterionName),
                             getAttributeValue(null, tagCriterionFullName),
                             getAttributeValue(null, tagCriterionType),

@@ -70,14 +70,12 @@ class CriAdap(val c: BaseActivity) : RecyclerView.Adapter<AnyViewHolder<ItemCriB
             }
         }
         h.b.overflow.isVisible = false
-        (h.b.overflow.layoutParams as ConstraintLayout.LayoutParams).apply {
-            height = 0; h.b.overflow.layoutParams = this
-        }
+        h.b.overflow.layoutParams = (h.b.overflow.layoutParams as ConstraintLayout.LayoutParams)
+            .apply { height = 0 }
         if (criOFOpened != null && criOFOpened!!.size > i) if (criOFOpened!![i]) {
             h.b.overflow.isVisible = true
-            (h.b.overflow.layoutParams as ConstraintLayout.LayoutParams).apply {
-                height = overflowHeight; h.b.overflow.layoutParams = this
-            }
+            h.b.overflow.layoutParams = (h.b.overflow.layoutParams as ConstraintLayout.LayoutParams)
+                .apply { height = overflowHeight }
         }
         if (h.b.switcher.isChecked) h.b.overflow.alpha = if (myc.isOn) 1f else ofAlpha
         h.b.ofo2ET.isEnabled = myc.isOn
@@ -103,10 +101,9 @@ class CriAdap(val c: BaseActivity) : RecyclerView.Adapter<AnyViewHolder<ItemCriB
             ).apply {
                 duration = 148
                 addUpdateListener {
-                    (h.b.overflow.layoutParams as ConstraintLayout.LayoutParams).apply {
-                        height = it.animatedValue as Int
-                        h.b.overflow.layoutParams = this
-                    }
+                    h.b.overflow.layoutParams =
+                        (h.b.overflow.layoutParams as ConstraintLayout.LayoutParams)
+                            .apply { height = it.animatedValue as Int }
                 }
                 addListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationStart(animation: Animator) {

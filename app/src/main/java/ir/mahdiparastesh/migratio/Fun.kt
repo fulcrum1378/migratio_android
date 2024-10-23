@@ -4,21 +4,32 @@ import android.animation.*
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Context.TEXT_CLASSIFICATION_SERVICE
 import android.content.DialogInterface
 import android.graphics.Typeface
+import android.os.Build
 import android.os.CountDownTimer
-import android.text.util.Linkify
+import android.os.LocaleList
+import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LinearInterpolator
+import android.view.textclassifier.TextClassificationManager
+import android.view.textclassifier.TextClassifier
+import android.view.textclassifier.TextLinks
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.text.toSpannable
 import androidx.core.view.isVisible
 import ir.mahdiparastesh.migratio.data.*
 import ir.mahdiparastesh.migratio.misc.BaseActivity
 import ir.mahdiparastesh.migratio.misc.Fonts
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 object Fun {
@@ -161,10 +172,10 @@ object Fun {
             setPositiveButton(R.string.ok, null)
         }.create().apply {
             show()
-            var font = c.textFont
+            val font = c.textFont
             fixADButton(c, getButton(AlertDialog.BUTTON_POSITIVE), font)
             fixADTitle(c, font)
-            var tvMsg = fixADMsg(c, font, linkify)
+            val tvMsg = fixADMsg(c, font, linkify)
             if (copyable) tvMsg?.setOnLongClickListener {
                 copyItsText(c, tvMsg)
                 true
@@ -179,9 +190,8 @@ object Fun {
             setBackgroundColor(ContextCompat.getColor(c, R.color.CP))
             typeface = font
             textSize = c.resources.getDimension(R.dimen.alert1Button) / c.dm.density
-            if (sMargin) (layoutParams as ViewGroup.MarginLayoutParams).apply {
-                marginStart = textSize.toInt()
-            }
+            if (sMargin) layoutParams = (layoutParams as ViewGroup.MarginLayoutParams)
+                .apply { marginStart = textSize.toInt() }
         }
     }
 
@@ -200,14 +210,32 @@ object Fun {
         )
         tvMsg?.textSize = c.resources.getDimension(R.dimen.alert1Msg) / c.dm.density
         tvMsg?.setPadding(c.dp(28), c.dp(15), c.dp(28), c.dp(15))
-        if (tvMsg != null && linkify) tvMsg.autoLinkMask = Linkify.WEB_URLS // FIXME
+        if (tvMsg != null && linkify) {
+            tvMsg.setTextIsSelectable(true)
+            tvMsg.movementMethod = LinkMovementMethod.getInstance()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) CoroutineScope(Dispatchers.IO).launch {
+                val txt = tvMsg.text.toSpannable()
+                (c.getSystemService(TEXT_CLASSIFICATION_SERVICE) as TextClassificationManager)
+                    .textClassifier.generateLinks(
+                        TextLinks.Request.Builder(tvMsg.text)
+                            .setEntityConfig(
+                                TextClassifier.EntityConfig.Builder()
+                                    .setIncludedTypes(listOf(TextClassifier.TYPE_URL))
+                                    .build()
+                            )
+                            .setDefaultLocales(LocaleList(Locale.US))
+                            .build()
+                    ).apply(txt, TextLinks.APPLY_STRATEGY_IGNORE, null) // FIXME doesn't work!
+                withContext(Dispatchers.Main) { tvMsg.text = txt }
+            }
+            tvMsg.setText("")
+        }
         return tvMsg
     }
 
     fun copyText(c: Context, s: String) {
-        (c.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?)?.setPrimaryClip(
-            ClipData.newPlainText("simple text", s)
-        )
+        (c.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?)
+            ?.setPrimaryClip(ClipData.newPlainText(s, s))
     }
 
     fun copyItsText(c: Context, tv: TextView) {

@@ -9,7 +9,6 @@ import android.content.DialogInterface
 import android.graphics.Typeface
 import android.os.Build
 import android.os.CountDownTimer
-import android.os.LocaleList
 import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.ViewGroup
@@ -113,7 +112,7 @@ object Fun {
             setOnCancelListener(onCancel)
         }.create().apply {
             show()
-            fixADButton(c, getButton(AlertDialog.BUTTON_POSITIVE), font)
+            getButton(AlertDialog.BUTTON_POSITIVE).fixADButton(c, font)
             fixADTitle(c, font)
             var tvMsg = fixADMsg(c, font)
 
@@ -153,8 +152,8 @@ object Fun {
             setOnCancelListener(onCancel)
         }.create().apply {
             show()
-            fixADButton(c, getButton(AlertDialog.BUTTON_POSITIVE), font, c.dirLtr)
-            fixADButton(c, getButton(AlertDialog.BUTTON_NEGATIVE), font, !c.dirLtr)
+            getButton(AlertDialog.BUTTON_POSITIVE).fixADButton(c, font, c.dirLtr)
+            getButton(AlertDialog.BUTTON_NEGATIVE).fixADButton(c, font, !c.dirLtr)
             fixADTitle(c, font)
             fixADMsg(c, font)
         }
@@ -173,7 +172,7 @@ object Fun {
         }.create().apply {
             show()
             val font = c.textFont
-            fixADButton(c, getButton(AlertDialog.BUTTON_POSITIVE), font)
+            getButton(AlertDialog.BUTTON_POSITIVE).fixADButton(c, font)
             fixADTitle(c, font)
             val tvMsg = fixADMsg(c, font, linkify)
             if (copyable) tvMsg?.setOnLongClickListener {
@@ -184,51 +183,45 @@ object Fun {
         return true
     }
 
-    fun fixADButton(c: BaseActivity, button: Button, font: Typeface, sMargin: Boolean = false) {
-        button.apply {
-            setTextColor(ContextCompat.getColor(c, R.color.CA))
-            setBackgroundColor(ContextCompat.getColor(c, R.color.CP))
-            typeface = font
-            textSize = c.resources.getDimension(R.dimen.alert1Button) / c.dm.density
-            if (sMargin) layoutParams = (layoutParams as ViewGroup.MarginLayoutParams)
-                .apply { marginStart = textSize.toInt() }
-        }
+    fun Button.fixADButton(c: BaseActivity, font: Typeface, sMargin: Boolean = false) {
+        setTextColor(ContextCompat.getColor(c, R.color.CA))
+        setBackgroundColor(ContextCompat.getColor(c, R.color.CP))
+        typeface = font
+        textSize = c.resources.getDimension(R.dimen.alert1Button) / c.dm.density
+        if (sMargin) layoutParams = (layoutParams as ViewGroup.MarginLayoutParams)
+            .apply { marginStart = textSize.toInt() }
     }
 
-    fun fixADTitle(c: BaseActivity, font: Typeface): TextView? {
-        var tvTitle = c.window?.findViewById<TextView>(androidx.appcompat.R.id.alertTitle)
-        tvTitle?.setTypeface(font, Typeface.BOLD)
-        tvTitle?.textSize = c.resources.getDimension(R.dimen.alert1Title) / c.dm.density
+    fun AlertDialog.fixADTitle(c: BaseActivity, font: Typeface): TextView? {
+        var tvTitle = findViewById<TextView>(androidx.appcompat.R.id.alertTitle) ?: return null
+        tvTitle.setTypeface(font, Typeface.BOLD)
+        tvTitle.textSize = c.resources.getDimension(R.dimen.alert1Title) / c.dm.density
         return tvTitle
     }
 
-    fun fixADMsg(c: BaseActivity, font: Typeface, linkify: Boolean = false): TextView? {
-        var tvMsg = c.window?.findViewById<TextView>(android.R.id.message)
-        tvMsg?.typeface = font
-        tvMsg?.setLineSpacing(
+    fun AlertDialog.fixADMsg(c: BaseActivity, font: Typeface, linkify: Boolean = false): TextView? {
+        var tvMsg = findViewById<TextView>(android.R.id.message) ?: return null
+        tvMsg.typeface = font
+        tvMsg.setLineSpacing(
             c.resources.getDimension(R.dimen.alert1MsgLine) / c.dm.density, 0f
         )
-        tvMsg?.textSize = c.resources.getDimension(R.dimen.alert1Msg) / c.dm.density
-        tvMsg?.setPadding(c.dp(28), c.dp(15), c.dp(28), c.dp(15))
-        if (tvMsg != null && linkify) {
+        tvMsg.textSize = c.resources.getDimension(R.dimen.alert1Msg) / c.dm.density
+        tvMsg.setPadding(c.dp(28), c.dp(15), c.dp(28), c.dp(15))
+        if (linkify) {
             tvMsg.setTextIsSelectable(true)
             tvMsg.movementMethod = LinkMovementMethod.getInstance()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) CoroutineScope(Dispatchers.IO).launch {
                 val txt = tvMsg.text.toSpannable()
                 (c.getSystemService(TEXT_CLASSIFICATION_SERVICE) as TextClassificationManager)
                     .textClassifier.generateLinks(
-                        TextLinks.Request.Builder(tvMsg.text)
-                            .setEntityConfig(
-                                TextClassifier.EntityConfig.Builder()
-                                    .setIncludedTypes(listOf(TextClassifier.TYPE_URL))
-                                    .build()
-                            )
-                            .setDefaultLocales(LocaleList(Locale.US))
-                            .build()
-                    ).apply(txt, TextLinks.APPLY_STRATEGY_IGNORE, null) // FIXME doesn't work!
+                        TextLinks.Request.Builder(tvMsg.text).setEntityConfig(
+                            TextClassifier.EntityConfig.Builder()
+                                .setIncludedTypes(listOf(TextClassifier.TYPE_URL))
+                                .build()
+                        ).build()
+                    ).apply(txt, TextLinks.APPLY_STRATEGY_IGNORE, null)
                 withContext(Dispatchers.Main) { tvMsg.text = txt }
             }
-            tvMsg.setText("")
         }
         return tvMsg
     }

@@ -13,8 +13,8 @@ android {
         applicationId = "ir.mahdiparastesh.migratio"
         minSdk = 24
         targetSdk = 35
-        versionCode = 9
-        versionName = "4.0.9"
+        versionCode = 10
+        versionName = "4.1.5"
     }
 
     compileOptions {
@@ -26,7 +26,9 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            )
         }
     }
 }

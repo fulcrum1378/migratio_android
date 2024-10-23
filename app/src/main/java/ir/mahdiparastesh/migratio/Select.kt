@@ -60,7 +60,7 @@ class Select : BaseActivity() {
                         Types.MY_CRITERION.ordinal -> {
                             m.myCriteria = msg.obj as ArrayList<MyCriterion>
                             if (m.myCriteria != null) arrangeCriteria()
-                            // TODO: ELSE
+                            // TO-DO: ELSE
                         }
                     }
 
@@ -198,7 +198,7 @@ class Select : BaseActivity() {
         Collections.sort(m.gotCriteria!!, Criterion.Companion.SortCri())
         if (criOFOpened == null) {
             criOFOpened = ArrayList()
-            for (i in m.gotCriteria!!) criOFOpened!!.add(false)
+            m.gotCriteria!!.indices.forEach { criOFOpened!!.add(false) }
         }
         b.rvCriteria.adapter = CriAdap(this)
     }
